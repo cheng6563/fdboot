@@ -12,7 +12,7 @@ RUN sed -i 's/deb\.debian\.org/mirrors\.aliyun\.com/g' /etc/apt/sources.list &&\
 
 WORKDIR /app
 
-COPY boot ./boot
+COPY ./* ./boot
 
 VOLUME /var/log/fdserver
 
