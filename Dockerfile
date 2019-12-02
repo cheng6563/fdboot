@@ -2,7 +2,8 @@ FROM openjdk:8-jdk
 
 ENV LC=Asia/Shanghai \
         LANG=zh_CN.UTF-8 \
-        SERVER_TOMCAT_MAX_THREADS=100
+        SERVER_TOMCAT_MAX_THREADS=100 \
+        EUREKA_INSTANCE_PREFER_IP_ADDRESS=true
 
 RUN sed -i 's/deb\.debian\.org/mirrors\.aliyun\.com/g' /etc/apt/sources.list &&\
     sed -i 's/security\.debian\.org/mirrors\.aliyun\.com/g' /etc/apt/sources.list &&\
