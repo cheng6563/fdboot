@@ -33,7 +33,7 @@ echo $_PORT>/app/APP_PORT
 HOSTNAME=$(hostname)
 
 #基础参数，通常不会改
-if [[ ! -n "$APP_PARAM_BASE" ]]; then
+if [[  -n "$APP_PARAM_BASE" ]]; then
     APP_PARAM_BASE="$APP_PARAM_BASE --ribbon.MaxAutoRetries=1"
     APP_PARAM_BASE="$APP_PARAM_BASE --ribbon.MaxAutoRetriesNextServer=3"
     APP_PARAM_BASE="$APP_PARAM_BASE --eureka.client.registry-fetch-interval-seconds=3"
