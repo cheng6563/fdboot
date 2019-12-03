@@ -18,9 +18,17 @@ do
         PORT="`shuf -i $LOWERPORT-$UPPERPORT -n 1`"
         ss -lpn | grep -q ":$PORT " || break
 done
-echo "Random port: $PORT"
 
-echo $PORT>/app/APP_PORT
+#echo "Random port: $PORT"
+if [[ -z $SERVER_PORT ]]; then
+	_PORT = $SERVER_PORT
+	echo "Use env port: $_PORT"
+else
+	_PORT = $PORT
+	echo "Use random port: $PORT"
+fi
+
+echo $_PORT>/app/APP_PORT
 
 HOSTNAME=$(hostname)
 
@@ -31,7 +39,8 @@ if [[ ! -n "$APP_PARAM_BASE" ]]; then
     APP_PARAM_BASE="$APP_PARAM_BASE --eureka.client.registry-fetch-interval-seconds=3"
     APP_PARAM_BASE="$APP_PARAM_BASE --eureka.instance.lease-renewal-interval-in-seconds=3"
     APP_PARAM_BASE="$APP_PARAM_BASE --ribbon.ServerListRefreshInterval=1000"
-    APP_PARAM_BASE="$APP_PARAM_BASE"' --eureka.instance.instance-id=${spring.application.name}_'"${HOSTNAME}_${PORT}"
+    APP_PARAM_BASE="$APP_PARAM_BASE"' --eureka.instance.instance-id=${spring.application.name}_'"${HOSTNAME}_${_PORT}"
+    APP_PARAM_BASE="$APP_PARAM_BASE --server.port=$_PORT"
 fi
 
 if [[ -n "$PROFILE" ]]; then
