@@ -21,14 +21,14 @@ done
 
 #echo "Random port: $PORT"
 if [[ -z $SERVER_PORT ]]; then
-	_PORT = $SERVER_PORT
-	echo "Use env port: $_PORT"
+	APP_PORT = $SERVER_PORT
+	echo "Use env port: $APP_PORT"
 else
-	_PORT = $PORT
-	echo "Use random port: $PORT"
+	APP_PORT = $PORT
+	echo "Use random port: $APP_PORT"
 fi
 
-echo $_PORT>/app/APP_PORT
+echo $APP_PORT>/app/APP_PORT
 
 HOSTNAME=$(hostname)
 
@@ -39,8 +39,8 @@ if [[  -n "$APP_PARAM_BASE" ]]; then
     APP_PARAM_BASE="$APP_PARAM_BASE --eureka.client.registry-fetch-interval-seconds=3"
     APP_PARAM_BASE="$APP_PARAM_BASE --eureka.instance.lease-renewal-interval-in-seconds=3"
     APP_PARAM_BASE="$APP_PARAM_BASE --ribbon.ServerListRefreshInterval=1000"
-    APP_PARAM_BASE="$APP_PARAM_BASE"' --eureka.instance.instance-id=${spring.application.name}_'"${HOSTNAME}_${_PORT}"
-    APP_PARAM_BASE="$APP_PARAM_BASE --server.port=$_PORT"
+    APP_PARAM_BASE="$APP_PARAM_BASE"' --eureka.instance.instance-id=${spring.application.name}_'"${HOSTNAME}_${APP_PORT}"
+    APP_PARAM_BASE="$APP_PARAM_BASE --server.port=$APP_PORT"
 fi
 
 if [[ -n "$PROFILE" ]]; then
