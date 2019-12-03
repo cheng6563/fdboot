@@ -21,10 +21,10 @@ done
 
 #echo "Random port: $PORT"
 if [[ -z $SERVER_PORT ]]; then
-	APP_PORT = $SERVER_PORT
+	APP_PORT=$SERVER_PORT
 	echo "Use env port: $APP_PORT"
 else
-	APP_PORT = $PORT
+	APP_PORT=$PORT
 	echo "Use random port: $APP_PORT"
 fi
 
