@@ -38,8 +38,7 @@ if [[ -n "$PROFILE" ]]; then
     APP_PARAM_BASE="$APP_PARAM_BASE --spring.profiles.active=$PROFILE"
 fi
 
-JAVA_MEM_OPTS="-Xmx800m"
-JAVA_OPTS="-Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Djava.security.egd=file:/dev/./urandom -Dspring.cloud.config.uri=$SPRING_CLOUD_CONFIG_URL -XX:+CrashOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/app/heap-dump.hprof $JAVA_MEM_OPTS"
+JAVA_OPTS="-Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Djava.security.egd=file:/dev/./urandom -Dspring.cloud.config.uri=$SPRING_CLOUD_CONFIG_URL -XX:+CrashOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/app/heap-dump.hprof "
 JAVA_CMD="java $JAVA_OPTS $JAVA_MEM_OPTS  -jar /app/app.jar $APP_PARAM_BASE $APP_PARAM"
 
 echo "Java cmd: $JAVA_CMD"
