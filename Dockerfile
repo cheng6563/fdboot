@@ -24,4 +24,4 @@ VOLUME /var/log/fdserver
 
 CMD [ "./boot.sh" ]
 
-HEALTHCHECK --interval=30s --timeout=105s --start-period=20s --retries=3 CMD [ "health-check.sh" ]
+HEALTHCHECK --interval=2s --timeout=60s --start-period=10s --retries=3 CMD [ "./health-check.sh" ]
