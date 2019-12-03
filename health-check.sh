@@ -1,6 +1,6 @@
 #! /bin/bash
 PORT=$(cat /app/APP_PORT)
-if [[ -n $PORT ]]; then
+if [[ -z $PORT ]]; then
     echo "Error: miss app port file."
     exit 0
 fi
