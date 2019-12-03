@@ -17,6 +17,6 @@ COPY ./* ./
 
 VOLUME /var/log/fdserver
 
-ENTRYPOINT [ "boot.sh" ]
+CMD [ "./boot.sh" ]
 
 HEALTHCHECK --interval=30s --timeout=105s --start-period=20s --retries=3 CMD [ "health-check.sh" ]
