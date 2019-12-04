@@ -39,12 +39,14 @@ if [[  -z "$APP_PARAM_BASE" ]]; then
     APP_PARAM_BASE="$APP_PARAM_BASE --eureka.client.registry-fetch-interval-seconds=3"
     APP_PARAM_BASE="$APP_PARAM_BASE --eureka.instance.lease-renewal-interval-in-seconds=3"
     APP_PARAM_BASE="$APP_PARAM_BASE --ribbon.ServerListRefreshInterval=1000"
-    APP_PARAM_BASE="$APP_PARAM_BASE"' --eureka.instance.instance-id=${spring.application.name}_'"${HOSTNAME}_${APP_PORT}"
+    APP_PARAM_BASE="$APP_PARAM_BASE"' --eureka.instance.instance-id=${spring.application.name}.'"${HOSTNAME}.${APP_PORT}"
     APP_PARAM_BASE="$APP_PARAM_BASE --server.port=$APP_PORT"
 fi
 
 if [[ -n "$PROFILE" ]]; then
     APP_PARAM_BASE="$APP_PARAM_BASE --spring.profiles.active=$PROFILE"
+else
+    APP_PARAM_BASE="$APP_PARAM_BASE --spring.profiles.active=default"
 fi
 
 JAVA_OPTS="-Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Djava.security.egd=file:/dev/./urandom -Dspring.cloud.config.uri=$SPRING_CLOUD_CONFIG_URL -XX:+CrashOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/app/heap-dump.hprof "
