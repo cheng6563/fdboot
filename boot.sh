@@ -34,12 +34,18 @@ HOSTNAME=$(hostname)
 
 #基础参数，通常不会改
 if [[  -z "$APP_PARAM_BASE" ]]; then
+    # ribbon调用重试
     APP_PARAM_BASE="$APP_PARAM_BASE --ribbon.MaxAutoRetries=1"
     APP_PARAM_BASE="$APP_PARAM_BASE --ribbon.MaxAutoRetriesNextServer=3"
+    # eureka刷新
     APP_PARAM_BASE="$APP_PARAM_BASE --eureka.client.registry-fetch-interval-seconds=3"
     APP_PARAM_BASE="$APP_PARAM_BASE --eureka.instance.lease-renewal-interval-in-seconds=3"
     APP_PARAM_BASE="$APP_PARAM_BASE --ribbon.ServerListRefreshInterval=1000"
+    # eureka主动健康检查
+    APP_PARAM_BASE="$APP_PARAM_BASE --eureka.client.healthcheck.enabled=true"
+    # eureka instance id
     APP_PARAM_BASE="$APP_PARAM_BASE"' --eureka.instance.instance-id=${spring.application.name}.'"${HOSTNAME}.${APP_PORT}"
+    # 服务端口号
     APP_PARAM_BASE="$APP_PARAM_BASE --server.port=$APP_PORT"
 fi
 
