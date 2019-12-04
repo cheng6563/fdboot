@@ -10,7 +10,7 @@ RUN sed -i 's/deb\.debian\.org/mirrors\.aliyun\.com/g' /etc/apt/sources.list &&\
     cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 ENV LC=Asia/Shanghai \
-        SERVER_TOMCAT_MAX_THREADS=100 \
+        SERVER_TOMCAT_MAX_THREADS=50 \
         EUREKA_INSTANCE_PREFER_IP_ADDRESS=true \
         JAVA_MEM_OPTS="-Xmx500m" \
         LANG=zh_CN.UTF-8 

@@ -44,7 +44,7 @@ if [[  -z "$APP_PARAM_BASE" ]]; then
     # eureka主动健康检查
     APP_PARAM_BASE="$APP_PARAM_BASE --eureka.client.healthcheck.enabled=true"
     # eureka instance id
-    APP_PARAM_BASE="$APP_PARAM_BASE"' --eureka.instance.instance-id=${spring.application.name}.'"${HOSTNAME}.${APP_PORT}"
+    APP_PARAM_BASE="$APP_PARAM_BASE"' --eureka.instance.instance-id=${spring.application.name}#'"${HOSTNAME}#${APP_PORT}"
     # 服务端口号
     APP_PARAM_BASE="$APP_PARAM_BASE --server.port=$APP_PORT"
 fi
