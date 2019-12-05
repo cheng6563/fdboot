@@ -8,7 +8,7 @@ if  [ ! -n '/app/app.jar' ]; then
 fi
 
 if [[ ! -n "$SPRING_CLOUD_CONFIG_URL" ]]; then
-    SPRING_CLOUD_CONFIG_URL="http://127.0.0.1:8888"
+    SPRING_CLOUD_CONFIG_ENABLED=false
 fi
 
 
