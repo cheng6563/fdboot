@@ -2,7 +2,7 @@
 
 echo 'Welcome fdboot.'
 
-if  [ ! -n '/app/app.jar' ]; then
+if  [ ! -f '/app/app.jar' ]; then
     echo 'No exist /app/app.jar, exit.'
     return -1
 fi
@@ -11,7 +11,7 @@ if [[ ! -n "$SPRING_CLOUD_CONFIG_URL" ]]; then
     SPRING_CLOUD_CONFIG_ENABLED=false
 fi
 
-
+# 生成随机端口号
 read LOWERPORT UPPERPORT < /proc/sys/net/ipv4/ip_local_port_range
 while :
 do
@@ -20,6 +20,8 @@ do
 done
 
 #echo "Random port: $PORT"
+
+# 使用环境变量SERVER_PORT中的端口号，如果没有就使用随机的
 if [[ -n $SERVER_PORT ]]; then
 	APP_PORT=$SERVER_PORT
 	echo "Use env port: $APP_PORT"
@@ -28,8 +30,10 @@ else
 	echo "Use random port: $APP_PORT"
 fi
 
+# 将服务端口号写入文件，用于健康检查
 echo $APP_PORT>/app/APP_PORT
 
+# 读取计算机名
 HOSTNAME=$(hostname)
 
 #基础参数，通常不会改
@@ -49,12 +53,14 @@ if [[  -z "$APP_PARAM_BASE" ]]; then
     APP_PARAM_BASE="$APP_PARAM_BASE --server.port=$APP_PORT"
 fi
 
+# 如果没有$PROFILE变量，就设为default，使用默认profile
 if [[ -n "$PROFILE" ]]; then
     APP_PARAM_BASE="$APP_PARAM_BASE --spring.profiles.active=$PROFILE"
 else
     APP_PARAM_BASE="$APP_PARAM_BASE --spring.profiles.active=default"
 fi
 
+# 生成java opts ，拼接运行命令
 JAVA_OPTS="-Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Djava.security.egd=file:/dev/./urandom -Dspring.cloud.config.uri=$SPRING_CLOUD_CONFIG_URL -XX:+CrashOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/app/heap-dump.hprof "
 JAVA_CMD="java $JAVA_OPTS $JAVA_MEM_OPTS  -jar /app/app.jar $APP_PARAM_BASE $APP_PARAM"
 
