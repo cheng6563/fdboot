@@ -8,8 +8,9 @@ if  [ ! -f '/app/app.jar' ]; then
 fi
 
 if [[ ! -n "$SPRING_CLOUD_CONFIG_URL" ]]; then
-    SPRING_CLOUD_CONFIG_ENABLED=false
     SPRING_CLOUD_CONFIG_URL=http://localhost:8888
+    echo >>bootstrap.properties
+    echo "spring.cloud.config.enabled=false">>bootstrap.properties
 fi
 
 # 生成随机端口号
