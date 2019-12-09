@@ -47,8 +47,10 @@ if [[  -z "$APP_PARAM_BASE" ]]; then
     APP_PARAM_BASE="$APP_PARAM_BASE --ribbon.MaxAutoRetriesNextServer=3"
     # eureka刷新
     APP_PARAM_BASE="$APP_PARAM_BASE --eureka.client.registry-fetch-interval-seconds=3"
-    APP_PARAM_BASE="$APP_PARAM_BASE --eureka.instance.lease-renewal-interval-in-seconds=3"
+    APP_PARAM_BASE="$APP_PARAM_BASE --eureka.instance.lease-renewal-interval-in-seconds=5"
+    APP_PARAM_BASE="$APP_PARAM_BASE --eureka.instance.lease-expiration-duration-in-seconds=15"
     APP_PARAM_BASE="$APP_PARAM_BASE --ribbon.ServerListRefreshInterval=1000"
+    
     # eureka主动健康检查
     APP_PARAM_BASE="$APP_PARAM_BASE --eureka.client.healthcheck.enabled=true"
     # eureka instance id
