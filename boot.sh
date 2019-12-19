@@ -40,6 +40,9 @@ echo $APP_PORT>/app/APP_PORT
 # 读取计算机名
 HOSTNAME=$(hostname)
 
+# 将计算机名写入hosts
+echo "127.0.0.1   $HOSTNAME">>/etc/hosts
+
 #基础参数，通常不会改
 if [[  -z "$APP_PARAM_BASE" ]]; then
     # ribbon调用重试
