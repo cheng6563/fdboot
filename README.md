@@ -19,3 +19,5 @@ Spring Boot Docker基础镜像
   Tomcat线程数量，默认为50
 - PROFILE  
   Spring Boot 的profile名
+
+项目将会同步到 https://github.com/leicheng6563/fdboot 随后同步到 https://hub.docker.com/r/leicheng6563/fdboot
