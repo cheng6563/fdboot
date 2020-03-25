@@ -4,7 +4,7 @@ echo 'Welcome fdboot.'
 
 if  [ ! -f '/app/app.jar' ]; then
     echo 'No exist /app/app.jar, exit.'
-    return -1
+    exit -1
 fi
 
 if [[ ! -n "$SPRING_CLOUD_CONFIG_URL" ]]; then
