@@ -9,11 +9,12 @@ RUN sed -i 's/deb\.debian\.org/mirrors\.aliyun\.com/g' /etc/apt/sources.list &&\
     locale-gen &&\
     cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
-ENV LC=Asia/Shanghai \
-        SERVER_TOMCAT_MAX_THREADS=50 \
+ENV SERVER_TOMCAT_MAX_THREADS=50 \
         EUREKA_INSTANCE_PREFER_IP_ADDRESS=true \
         JAVA_MEM_OPTS="-Xmx500m" \
-        LANG=zh_CN.UTF-8 
+        LANG=zh_CN.UTF-8 \
+        LC_ALL=zh_CN.UTF-8 \
+        TZ=Asia/Shanghai
 
 
 WORKDIR /app
