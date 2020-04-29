@@ -9,7 +9,7 @@ fi
 
 if [[ ! -n "$SPRING_CLOUD_CONFIG_URL" ]]; then
     SPRING_CLOUD_CONFIG_URL=http://localhost:8888
-    echo >>bootstrap.properties
+    echo >bootstrap.properties
     echo "No SPRING_CLOUD_CONFIG_URL env, disable spring cloud config."
     echo "# No SPRING_CLOUD_CONFIG_URL env, disable spring cloud config.">>bootstrap.properties
     echo "spring.cloud.config.enabled=false">>bootstrap.properties
