@@ -1,4 +1,4 @@
-FROM openjdk:11-jdk
+FROM openjdk:8-jdk
 
 
 RUN sed -i 's/deb\.debian\.org/mirrors\.aliyun\.com/g' /etc/apt/sources.list &&\

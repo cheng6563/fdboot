@@ -40,6 +40,9 @@ echo $APP_PORT>/app/APP_PORT
 # 读取计算机名
 HOSTNAME=$(hostname)
 
+# 获取主要IP
+HOST_PRIMARY_IP=$(ip route get 1 | sed -n 's/^.*src \([0-9.]*\) .*$/\1/p')
+
 # 将计算机名写入hosts
 echo "127.0.0.1   $HOSTNAME">>/etc/hosts
 
@@ -57,7 +60,7 @@ if [[  -z "$APP_PARAM_BASE" ]]; then
     # eureka主动健康检查
     APP_PARAM_BASE="$APP_PARAM_BASE --eureka.client.healthcheck.enabled=true"
     # eureka instance id
-    APP_PARAM_BASE="$APP_PARAM_BASE"' --eureka.instance.instance-id=${spring.application.name}#'"${HOSTNAME}#${APP_PORT}"
+    APP_PARAM_BASE="$APP_PARAM_BASE"' --eureka.instance.instance-id=${spring.application.name}#'"${HOST_PRIMARY_IP}#${APP_PORT}"
     # 服务端口号
     APP_PARAM_BASE="$APP_PARAM_BASE --server.port=$APP_PORT"
 fi
