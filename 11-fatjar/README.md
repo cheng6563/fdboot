@@ -6,9 +6,7 @@ Spring Boot Docker基础镜像
 - 随机端口
 - 健康检查脚本
 
-fatjar版本，将Spring Boot的jar包放到 /app/app.jar
-extracted版本，将Spring Boot的jar包解压到 /app/
-
+将Spring Boot的jar包放到 /app/app.jar
 
 然后建议设置以下变量
 - SERVER_PORT  
