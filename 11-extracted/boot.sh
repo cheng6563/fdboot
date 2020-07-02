@@ -39,10 +39,25 @@ if [[ ! -n "$SPRING_CLOUD_CONFIG_URL" ]]; then
     echo "spring.cloud.config.enabled=false" >>bootstrap.properties
 fi
 
+
+# 读取计算机名
+HOSTNAME=$(hostname)
+
+# 获取主要IP
+HOST_PRIMARY_IP=$(ip route get 1 | sed -n 's/^.*src \([0-9.]*\) .*$/\1/p')
+
+# 将计算机名写入hosts
+echo "127.0.0.1   $HOSTNAME" >>/etc/hosts
+
 # 生成随机端口号
+RANDOM_SEED="$START_CLASS $HOSTNAME $HOST_PRIMARY_IP"
 read LOWERPORT UPPERPORT </proc/sys/net/ipv4/ip_local_port_range
+let RANDOM_DIFF=UPPERPORT-LOWERPORT
+RANDOM=$RANDOM_SEED
 while :; do
-    PORT="$(shuf -i $LOWERPORT-$UPPERPORT -n 1)"
+    r=$RANDOM
+    let PORT=RANDOM_DIFF%r+LOWERPORT
+    # PORT="$(shuf -i $LOWERPORT-$UPPERPORT -n 1)"
     ss -lpn | grep -q ":$PORT " || break
 done
 
@@ -60,14 +75,6 @@ fi
 # 将服务端口号写入文件，用于健康检查
 echo $APP_PORT >/app/APP_PORT
 
-# 读取计算机名
-HOSTNAME=$(hostname)
-
-# 获取主要IP
-HOST_PRIMARY_IP=$(ip route get 1 | sed -n 's/^.*src \([0-9.]*\) .*$/\1/p')
-
-# 将计算机名写入hosts
-echo "127.0.0.1   $HOSTNAME" >>/etc/hosts
 
 #基础参数，通常不会改
 if [[ -z "$APP_PARAM_BASE" ]]; then
