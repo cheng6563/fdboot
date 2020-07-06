@@ -25,7 +25,7 @@ HOST_PRIMARY_IP=$(ip route get 1 | sed -n 's/^.*src \([0-9.]*\) .*$/\1/p')
 echo "127.0.0.1   $HOSTNAME" >>/etc/hosts
 
 # 生成随机端口号
-RANDOM_SEED="$START_CLASS $HOSTNAME $HOST_PRIMARY_IP"
+RANDOM_SEED="${HOSTNAME}#${HOST_PRIMARY_IP}"
 read LOWERPORT UPPERPORT </proc/sys/net/ipv4/ip_local_port_range
 let RANDOM_DIFF=UPPERPORT-LOWERPORT
 RANDOM=$RANDOM_SEED
