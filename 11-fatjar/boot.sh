@@ -26,6 +26,11 @@ echo "127.0.0.1   $HOSTNAME" >>/etc/hosts
 
 # 生成随机端口号
 RANDOM_SEED="${APP_NAME}#${HOST_PRIMARY_IP}"
+
+PORT=0
+RANDOM_SEED_HEX=`echo -n $RANDOM_SEED | md5sum |  awk '{print $1}'`
+RANDOM_SEED_SHORT=${RANDOM_SEED_HEX:0:8}
+RANDOM_SEED=`printf "%d\n" 0x${RANDOM_SEED_SHORT}`
 read LOWERPORT UPPERPORT </proc/sys/net/ipv4/ip_local_port_range
 let RANDOM_DIFF=UPPERPORT-LOWERPORT
 RANDOM=$RANDOM_SEED
@@ -35,7 +40,6 @@ while :; do
     # PORT="$(shuf -i $LOWERPORT-$UPPERPORT -n 1)"
     ss -lpn | grep -q ":$PORT " || break
 done
-
 #echo "Random port: $PORT"
 
 # 使用环境变量SERVER_PORT中的端口号，如果没有就使用随机的
