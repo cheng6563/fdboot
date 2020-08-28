@@ -14,7 +14,7 @@ ENV SERVER_TOMCAT_MAX_THREADS=50 \
         JAVA_MEM_OPTS="-Xmx500m" \
         LANG=zh_CN.UTF-8 \
         LC_ALL=zh_CN.UTF-8 \
-        TZ=Asia/Shanghai
+        TZ=Asia/Shanghai 
 
 
 WORKDIR /app

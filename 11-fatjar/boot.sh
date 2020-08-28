@@ -91,4 +91,4 @@ JAVA_OPTS="-Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Djava.secur
 JAVA_CMD="java $JAVA_OPTS $JAVA_MEM_OPTS  -jar /app/app.jar $APP_PARAM_BASE $APP_PARAM"
 
 echo "Java cmd: $JAVA_CMD"
-$JAVA_CMD
+exec $JAVA_CMD

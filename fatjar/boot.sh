@@ -56,7 +56,7 @@ fi
 echo $APP_PORT>/app/APP_PORT
 
 #基础参数，通常不会改
-if [[  -z "$APP_PARAM_BASE" ]]; then
+if [[ -z "$APP_PARAM_BASE" ]]; then
     # ribbon调用重试
     APP_PARAM_BASE="$APP_PARAM_BASE --ribbon.MaxAutoRetries=1"
     APP_PARAM_BASE="$APP_PARAM_BASE --ribbon.MaxAutoRetriesNextServer=3"
@@ -65,7 +65,6 @@ if [[  -z "$APP_PARAM_BASE" ]]; then
     APP_PARAM_BASE="$APP_PARAM_BASE --eureka.instance.lease-renewal-interval-in-seconds=5"
     APP_PARAM_BASE="$APP_PARAM_BASE --eureka.instance.lease-expiration-duration-in-seconds=15"
     APP_PARAM_BASE="$APP_PARAM_BASE --ribbon.ServerListRefreshInterval=1000"
-    
     # eureka主动健康检查
     APP_PARAM_BASE="$APP_PARAM_BASE --eureka.client.healthcheck.enabled=true"
     # eureka instance id
@@ -91,4 +90,4 @@ JAVA_OPTS="-XX:+UseG1GC -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true
 JAVA_CMD="java $JAVA_OPTS $JAVA_MEM_OPTS  -jar /app/app.jar $APP_PARAM_BASE $APP_PARAM"
 
 echo "Java cmd: $JAVA_CMD"
-$JAVA_CMD
+exec $JAVA_CMD
