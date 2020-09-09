@@ -38,7 +38,7 @@ while :; do
     r=$RANDOM
     let PORT=RANDOM_DIFF%r+LOWERPORT
     # PORT="$(shuf -i $LOWERPORT-$UPPERPORT -n 1)"
-    ss -an | awk '{print $5}' | grep -q ":$PORT " || break
+    ss -an | awk '{print $5}' | grep -q ":$PORT" || break
 done
 #echo "Random port: $PORT"
 
