@@ -6,7 +6,7 @@ Spring Boot Docker基础镜像
 - 随机端口
 - 健康检查脚本
 
-fatjar版本，将Spring Boot的jar包放到 /app/app.jar
+fatjar版本，将Spring Boot的jar包放到 /app/app.jar  
 extracted版本，将Spring Boot的jar包解压到 /app/
 
 
@@ -22,4 +22,4 @@ extracted版本，将Spring Boot的jar包解压到 /app/
 - PROFILE  
   Spring Boot 的profile名
 
-项目将会同步到 https://github.com/leicheng6563/fdboot 随后同步到 https://hub.docker.com/r/leicheng6563/fdboot
+项目将会同步到 https://github.com/cheng6563/fdboot 随后同步到 https://hub.docker.com/r/cheng6563/fdboot
