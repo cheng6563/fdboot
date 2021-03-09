@@ -96,17 +96,17 @@ if [[ -z "$APP_PARAM_BASE" ]]; then
     APP_PARAM_BASE="$APP_PARAM_BASE --eureka.client.healthcheck.enabled=true"
     # eureka instance id
     APP_PARAM_BASE="$APP_PARAM_BASE"' --eureka.instance.instance-id=${spring.application.name}#'"${HOST_PRIMARY_IP}#${APP_PORT}"
-    # 服务端口号
-    APP_PARAM_BASE="$APP_PARAM_BASE --server.port=$APP_PORT"
 fi
+
+# 服务端口号
+APP_PARAM_BASE="$APP_PARAM_BASE --server.port=$APP_PORT"
+export SERVER_PORT=$APP_PORT
 
 # 如果没有$PROFILE变量，就设为default，使用默认profile
 if [[ -n "$PROFILE" ]]; then
-    APP_PARAM_BASE="$APP_PARAM_BASE --spring.profiles.active=$PROFILE"
+    export SPRING_PROFILE_ACTIVE=$PROFILE
 elif [[ $PROFILE_D ]]; then
-    APP_PARAM_BASE="$APP_PARAM_BASE --spring.profiles.active=d"
-else
-    APP_PARAM_BASE="$APP_PARAM_BASE --spring.profiles.active=default"
+    export SPRING_PROFILE_ACTIVE=d
 fi
 
 
