@@ -79,7 +79,7 @@ export SERVER_PORT=$APP_PORT
 
 # 如果没有$PROFILE变量，就设为default，使用默认profile
 if [[ -n "$PROFILE" ]]; then
-    export SPRING_PROFILE_ACTIVE=$PROFILE
+    export SPRING_PROFILES_ACTIVE=$PROFILE
 fi
 
 # 生成java opts ，拼接运行命令
