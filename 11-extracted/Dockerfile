@@ -1,9 +1,7 @@
-FROM openjdk:11-jdk
+FROM adoptopenjdk:11-jdk
 
 
-RUN sed -i 's/deb\.debian\.org/mirrors\.aliyun\.com/g' /etc/apt/sources.list &&\
-    sed -i 's/security\.debian\.org/mirrors\.aliyun\.com/g' /etc/apt/sources.list &&\
-    apt-get update &&\
+RUN apt-get update &&\
     apt-get install -y curl lrzsz vim telnet locales &&\
     sed -i '/^#.* zh_CN.UTF-8 /s/^#//' /etc/locale.gen &&\
     locale-gen &&\
