@@ -2,7 +2,7 @@ FROM adoptopenjdk:15-jdk
 
 
 RUN apt-get update &&\
-    apt-get install -y curl lrzsz vim telnet locales &&\
+    apt-get install -y curl lrzsz vim telnet locales iproute2 &&\
     sed -i '/^#.* zh_CN.UTF-8 /s/^#//' /etc/locale.gen &&\
     locale-gen &&\
     cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
