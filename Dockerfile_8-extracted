@@ -13,7 +13,7 @@ ENV SERVER_TOMCAT_MAX_THREADS=50 \
 
 WORKDIR /app
 
-COPY extractd/* common/* ./
+COPY extracted/* common/* ./
 COPY jdk8/java.security /usr/local/openjdk-8/jre/lib/security/java.security
 
 VOLUME /var/log/fdserver
