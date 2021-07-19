@@ -7,7 +7,7 @@ RUN apt-get update &&\
 ENV SERVER_TOMCAT_MAX_THREADS=50 \
         EUREKA_INSTANCE_PREFER_IP_ADDRESS=true \
         JAVA_MEM_OPTS="-Xmx500m " \
-        JAVA_GC_OPTS=" " \
+        JAVA_GC_OPTS="" \
         TZ=Asia/Shanghai 
 
 
