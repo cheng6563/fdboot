@@ -2,13 +2,16 @@ FROM openjdk:8-jdk
 
 
 RUN apt-get update &&\
-    apt-get install -y curl lrzsz vim telnet locales iproute2 
+    apt-get install -y curl lrzsz vim telnet locales iproute2 &&\
+    localedef -c -f UTF-8 -i zh_CN zh_CN.utf8 &&\
+    apt-get clean
 
 ENV SERVER_TOMCAT_MAX_THREADS=50 \
         EUREKA_INSTANCE_PREFER_IP_ADDRESS=true \
         JAVA_MEM_OPTS="-Xmx500m " \
         JAVA_GC_OPTS="-XX:+UseG1GC " \
-        TZ=Asia/Shanghai 
+        TZ=Asia/Shanghai \
+        LANG=zh_CN.utf8 
 
 
 WORKDIR /app
