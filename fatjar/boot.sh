@@ -88,7 +88,7 @@ fi
 # -Djava.security.egd=file:/dev/./urandom 使用伪随机数，避免linux熵池不够导致系统阻塞
 # -Dspring.cloud.config.uri=$SPRING_CLOUD_CONFIG_URL 应用Spring Cloud Config地址
 # -XX:+CrashOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/var/log/fdserver/${HOSTNAME}_${APP_PORT}.hprof 使内存溢出时立即停止应用并保存dump
-export JAVA_TOOL_OPTIONS="$JAVA_TOOL_OPTIONS $JAVA_MEM_OPTS $JAVA_GC_OPTS  -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Djava.security.egd=file:/dev/./urandom -Dspring.cloud.config.uri=$SPRING_CLOUD_CONFIG_URL -XX:+CrashOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/var/log/fdserver/${HOSTNAME}_${APP_PORT}.hprof "
+export JAVA_TOOL_OPTIONS="$JAVA_TOOL_OPTIONS $JAVA_MEM_OPTS $JAVA_GC_OPTS  -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Djava.security.egd=file:/dev/./urandom -Dspring.cloud.config.uri=$SPRING_CLOUD_CONFIG_URL -XX:+ExitOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/var/log/fdserver/${HOSTNAME}_${APP_PORT}.hprof "
 
 JAVA_CMD="java $JAVA_OPTS -jar /app/app.jar $APP_PARAM_BASE $APP_PARAM"
 
