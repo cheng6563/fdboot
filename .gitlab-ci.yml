@@ -3,3 +3,13 @@ build:
   script:
     - echo $DOCKER_REPO_PASSWORD | docker login --username=$DOCKER_REPO_USERNAME --password-stdin $DOCKER_REPO_URL
     - docker build . -f Dockerfile_8-extracted -t $DOCKER_REPO_URL/fdboot:8-extacted && docker push $DOCKER_REPO_URL/fdboot:8-extacted
+    - docker build . -f Dockerfile_8-extracted-openj9 -t $DOCKER_REPO_URL/fdboot:8-extacted && docker push $DOCKER_REPO_URL/fdboot:8-extacted-openj9
+    - docker build . -f Dockerfile_8-fatjar -t $DOCKER_REPO_URL/fdboot:8-fatjar && docker push $DOCKER_REPO_URL/fdboot:8-fatjar
+    - docker build . -f Dockerfile_8-fatjar-openj9 -t $DOCKER_REPO_URL/fdboot:8-fatjar && docker push $DOCKER_REPO_URL/fdboot:8-fatjar-openj9
+
+    - docker build . -f Dockerfile_11-extracted -t $DOCKER_REPO_URL/fdboot:11-extacted && docker push $DOCKER_REPO_URL/fdboot:11-extacted
+    - docker build . -f Dockerfile_11-extracted-openj9 -t $DOCKER_REPO_URL/fdboot:11-extacted && docker push $DOCKER_REPO_URL/fdboot:11-extacted-openj9
+    - docker build . -f Dockerfile_11-fatjar -t $DOCKER_REPO_URL/fdboot:11-fatjar && docker push $DOCKER_REPO_URL/fdboot:11-fatjar
+    - docker build . -f Dockerfile_11-fatjar-openj9 -t $DOCKER_REPO_URL/fdboot:11-fatjar && docker push $DOCKER_REPO_URL/fdboot:11-fatjar-openj9
+
+    - docker tag $DOCKER_REPO_URL/fdboot:8-fatjar $DOCKER_REPO_URL/fdboot && docker push $DOCKER_REPO_URL/fdboot

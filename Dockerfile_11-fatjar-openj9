@@ -1,8 +1,10 @@
 FROM adoptopenjdk:11-jdk-openj9
 
 
-RUN apt-get update &&\
-    apt-get install -y curl lrzsz vim telnet locales iproute2 wqy-* &&\
+RUN sed -i 's/archive\.ubuntu\.com/mirrors\.aliyun\.com/g' /etc/apt/sources.list &&\
+    sed -i 's/security\.ubuntu\.com/mirrors\.aliyun\.com/g' /etc/apt/sources.list &&\
+    apt-get update &&\
+    apt-get install -y curl lrzsz vim telnet locales iproute2 language-pack-zh-hans fonts-wqy-zenhei &&\
     localedef -c -f UTF-8 -i zh_CN zh_CN.utf8 &&\
     apt-get clean
 
