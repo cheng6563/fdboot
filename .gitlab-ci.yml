@@ -13,3 +13,5 @@ build:
     - docker build . -f Dockerfile_11-fatjar-openj9 -t $DOCKER_REPO_URL/fdboot:11-fatjar-openj9 && docker push $DOCKER_REPO_URL/fdboot:11-fatjar-openj9
 
     - docker tag $DOCKER_REPO_URL/fdboot:8-fatjar $DOCKER_REPO_URL/fdboot && docker push $DOCKER_REPO_URL/fdboot
+    - docker tag $DOCKER_REPO_URL/fdboot:8-fatjar $DOCKER_REPO_URL/fdboot && docker push $DOCKER_REPO_URL/fdboot:fatjar
+    - docker tag $DOCKER_REPO_URL/fdboot:8-extracted $DOCKER_REPO_URL/fdboot && docker push $DOCKER_REPO_URL/fdboot:extracted
