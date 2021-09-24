@@ -1,0 +1,5 @@
+build:
+  stage: build
+  script:
+    - echo $DOCKER_REPO_PASSWORD | docker login --username=$DOCKER_REPO_USERNAME --password-stdin $DOCKER_REPO_URL
+    - docker build . -f Dockerfile_8-extracted -t $DOCKER_REPO_URL/fdboot:8-extacted && docker push $DOCKER_REPO_URL/fdboot:8-extacted
