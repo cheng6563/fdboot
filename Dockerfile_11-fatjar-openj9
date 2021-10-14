@@ -19,7 +19,7 @@ ENV SERVER_TOMCAT_MAX_THREADS=50 \
 WORKDIR /app
 
 COPY fatjar/* common/* ./
-COPY jdk11/java.security /usr/local/openjdk-11/conf/security/java.security
+COPY jdk11/java.security /opt/java/openjdk/jre/lib/security/java.security
 
 VOLUME /var/log/fdserver
 
